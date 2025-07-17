@@ -1,303 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SmartInvest Arena - Real Investment Opportunities</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartInvest Arena</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Inter', sans-serif;
-      background: #0d0d0d;
-      color: #f4f4f4;
-      line-height: 1.6;
+      background-color: #0d0d0d;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
     }
-    header, nav, footer, section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 2rem 1rem;
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
     }
-    header {
+    h1, h2 {
       text-align: center;
-      background: #111;
-      border-bottom: 1px solid #222;
     }
-    header h1 {
-      font-size: 2.8rem;
-      color: #00ffcc;
-    }
-    header p {
-      color: #aaa;
-    }
-    nav {
-      background: #141414;
-      text-align: center;
-      padding: 1rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    nav a {
-      color: #00ffcc;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    section h2 {
-      color: #00ccff;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid #333;
-      padding-bottom: 0.5rem;
-    }
-    .investment-options, .latest-investors, .testimonials {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .card {
+    form {
       background: #1a1a1a;
-      padding: 1rem;
+      padding: 20px;
       border-radius: 8px;
-      border-left: 4px solid #00ffcc;
-      box-shadow: 0 0 10px rgba(0,255,204,0.1);
+      margin-top: 40px;
     }
-    .calculator input, .contact-form input, .contact-form textarea {
+    input, select, button {
       width: 100%;
-      margin-bottom: 1rem;
-      padding: 10px;
+      padding: 12px;
+      margin-top: 10px;
       border-radius: 6px;
       border: none;
     }
-    .calculator button, .contact-form button {
-      background: #00ccff;
-      border: none;
-      padding: 0.75rem;
+    button {
+      background-color: #00cc66;
+      color: white;
       font-weight: bold;
       cursor: pointer;
-      width: 100%;
-      border-radius: 6px;
-    }
-    .marquee {
-      background: #111;
-      overflow: hidden;
-      white-space: nowrap;
-      color: #00ccff;
-      font-weight: bold;
-      font-size: 1rem;
-      padding: 0.7rem;
-    }
-    footer {
-      text-align: center;
-      color: #777;
-      font-size: 0.9rem;
-      margin-top: 4rem;
-      border-top: 1px solid #222;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>SmartInvest Arena</h1>
+    <p>Invest securely and track your growth live!</p><h2>Investment Form</h2>
+<form id="investmentForm">
+  <input type="text" id="name" placeholder="Full Name" required>
+  <input type="email" id="email" placeholder="Email Address" required>
+  <input type="number" id="amount" placeholder="Investment Amount ($)" required>
+  <select id="method">
+    <option value="BTC">Bitcoin (BTC)</option>
+    <option value="USDT">Tether (USDT)</option>
+    <option value="ETH">Ethereum (ETH)</option>
+  </select>
+  <input type="text" id="date" disabled>
+  <button type="submit">Submit Investment</button>
+</form>
 
-<div class="marquee">
-  <marquee behavior="scroll" direction="left" scrollamount="5">
-    💰 Trusted by Over 10,000 Investors | 📈 Daily ROI Updates | 🧠 Smart Investing Made Easy | 🚀 Build Your Wealth Now
-  </marquee>
-</div>
+  </div>  <script>
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
+      authDomain: "smart-invest-tracker.firebaseapp.com",
+      projectId: "smart-invest-tracker",
+      storageBucket: "smart-invest-tracker.appspot.com",
+      messagingSenderId: "464698438524",
+      appId: "1:464698438524:web:fa266eb1b29604bb8a6af9",
+      measurementId: "G-4YXZ0N9D5C"
+    };
 
-<header>
-  <h1>SmartInvest Arena</h1>
-  <p>Build Real Wealth Through Real Investments</p>
-</header>
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-<nav>
-  <a href="#about">About</a>
-  <a href="#opportunities">Opportunities</a>
-  <a href="#roi">ROI Estimates</a>
-  <a href="#calculator">Calculator</a>
-  <a href="#investors">Latest Investors</a>
-  <a href="#testimonials">Testimonials</a>
-  <a href="#contact">Contact</a>
-</nav>
-  <section>
-  <h2>🔐 Get Trust Wallet</h2>
-  <p>To invest securely, download the official Trust Wallet from any of the links below:</p>
-  <ul>
-    <li><a href="https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp" target="_blank">📱 Download for Android (Google Play Store)</a></li>
-    <li><a href="https://apps.apple.com/app/trust-crypto-bitcoin-wallet/id1288339409" target="_blank">🍎 Download for iOS (Apple App Store)</a></li>
-    <li><a href="https://trustwallet.com/" target="_blank">🌐 Visit Official Trust Wallet Website</a></li>
-  </ul>
-<section>
-  h2>💼 Send Your Investment</h2>
-  <p><strong>BTC:</strong><br>
-    <a href="bitcoin:bc1qwecurc0f297uuveq7xl4svwzl4vavu5zv25vnm" target="_blank">
-      bc1qwecurc0f297uuveq7xl4svwzl4vavu5zv25vnm
-    </a>
-  </p>
-  <p><strong>Ethereum (ERC20):</strong><br>
-    <a href="ethereum:0xde486e8e461247aeb00a5cbe8eb64dad07980674" target="_blank">
-      0xde486e8e461247aeb00a5cbe8eb64dad07980674
-    </a>
-  </p>
-  <p><strong>USDT (TRC20):</strong><br>
-    <a href="tron:FH9eyyMvg12CVdjXuWN4q1VfawHDfAET9Zd9d7sSLz2A" target="_blank">
-      FH9eyyMvg12CVdjXuWN4q1VfawHDfAET9Zd9d7sSLz2A
-    </a>
-  </p>
-</section>
+    // Set today's date
+    document.getElementById("date").value = new Date().toLocaleDateString();
 
-<section>
-  <h2>🚀 Latest Investors</h2>
-  <div class="card"><strong>Mary K.</strong> – Invested: <strong>$2,000</strong> – Profit Today: <strong>$65.22</strong></div>
-  <div class="card"><strong>John T.</strong> – Invested: <strong>$800</strong> – Profit Today: <strong>$24.11</strong></div>
-  <div class="card"><strong>Ada B.</strong> – Invested: <strong>$3,500</strong> – Profit Today: <strong>$112.90</strong></div>
-</section>
+    // Form handling
+    document.getElementById("investmentForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-<section>
-  <h2>📞 Contact</h2>
-  <p>Join our Telegram channel: <a href="https://t.me/whiteboard957" target="_blank">https://t.me/whiteboard957</a></p>
-</section>
-<section id="about">
-  <h2>About Us</h2>
-  <p>SmartInvest Arena is a forward-thinking investment platform offering access to lucrative opportunities across cryptocurrency, real estate, stocks, startups, and more. With a team of expert analysts and a community of over 10,000 investors, we aim to provide transparent and profitable investment strategies that grow your capital daily.</p>
-</section>
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const amount = parseFloat(document.getElementById("amount").value);
+      const method = document.getElementById("method").value;
+      const date = new Date().toLocaleString();
 
-<section id="opportunities">
-  <h2>Investment Opportunities</h2>
-  <div class="investment-options">
-    <div class="card"><h3>Cryptocurrency</h3><p>Bitcoin, Ethereum, and emerging altcoins offering 20–100% annual returns.</p></div>
-    <div class="card"><h3>Real Estate</h3><p>Rental properties and REITs with monthly income and appreciation potential.</p></div>
-    <div class="card"><h3>Stock Market</h3><p>Blue chip and growth stocks delivering 10–15% average annual ROI.</p></div>
-    <div class="card"><h3>Startups</h3><p>Private equity and venture capital with high-growth upside.</p></div>
-    <div class="card"><h3>Agriculture</h3><p>Invest in farmlands, cash crops, and agro-tech innovations.</p></div>
-    <div class="card"><h3>Digital Assets</h3><p>Domains, NFTs, and IPs with long-term value and flipping opportunities.</p></div>
-  </div>
-</section>
-
-<section id="roi">
-  <h2>Estimated ROI by Category</h2>
-  <ul>
-    <li>Crypto: 20% – 100%</li>
-    <li>Real Estate: 8% – 15%</li>
-    <li>Stocks: 10% – 15%</li>
-    <li>Startups: 30% – 200%</li>
-    <li>Agriculture: 10% – 20%</li>
-    <li>Digital Assets: 15% – 50%</li>
-  </ul>
-</section>
-
-<section id="calculator" class="calculator">
-  <h2>Investment Calculator</h2>
-  <input type="number" id="amount" placeholder="Amount to Invest ($)" />
-  <input type="number" id="rate" placeholder="Expected ROI (%)" />
-  <input type="number" id="months" placeholder="Duration (Months)" />
-  <button onclick="calculate()">Calculate</button>
-  <div id="result" style="margin-top:1rem; font-weight:bold; color:#00ffcc;"></div>
-</section>
-
-<section id="investors">
-  <h2>Latest Investors & Profits</h2>
-  <div class="latest-investors" id="investor-list"></div>
-</section>
-
-<section id="testimonials">
-  <h2>What Our Investors Say</h2>
-  <div class="testimonials">
-    <div class="card">“My portfolio grew 3x in 6 months. SmartInvest is a game changer!” – Maria K.</div>
-    <div class="card">“I started with $500 and now earning passive income daily.” – Deji A.</div>
-    <div class="card">“Professional support and real returns. Highly recommended!” – Sarah G.</div>
-  </div>
-</section>
-
-<section id="contact" class="contact-form">
-  <h2>Contact Us</h2>
-  <form>
-    <input type="text" name="name" placeholder="Your Name" required/>
-    <input type="email" name="email" placeholder="Your Email" required/>
-    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-</section>
-
-<footer>
-  &copy; 2025 SmartInvest Arena — All rights reserved.
-</footer>
-
-<script>
-const investors = [
-  { name: "Investor A", amount: 1500, startProfit: 45, dailyRate: 0.02, startDate: '2025-07-13' },
-  { name: "Investor B", amount: 3200, startProfit: 96, dailyRate: 0.015, startDate: '2025-07-14' },
-  { name: "Investor C", amount: 780,  startProfit: 23, dailyRate: 0.025, startDate: '2025-07-15' },
-  { name: "Investor D", amount: 5000, startProfit: 150, dailyRate: 0.01,  startDate: '2025-07-15' },
-  { name: "Investor E", amount: 950,  startProfit: 28.5, dailyRate: 0.02,  startDate: '2025-07-16' }
-];
-
-function daysBetween(startDate) {
-  const start = new Date(startDate);
-  const now = new Date();
-  const diff = now - start;
-  return Math.floor(diff / (1000 * 60 * 60 * 24));
-}
-
-function updateInvestors() {
-  const list = document.getElementById('investor-list');
-  list.innerHTML = '';
-  investors.forEach(inv => {
-    const days = daysBetween(inv.startDate);
-    const profit = inv.startProfit + inv.amount * inv.dailyRate * days;
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      <strong>${inv.name}</strong><br>
-      Invested: $${inv.amount}<br>
-      Profit after ${days} day(s): <span style="color:#00ffcc;">$${profit.toFixed(2)}</span>
-    `;
-    list.appendChild(card);
-  });
-}
-
-function calculate() {
-  const amount = parseFloat(document.getElementById('amount').value);
-  const rate = parseFloat(document.getElementById('rate').value);
-  const months = parseFloat(document.getElementById('months').value);
-  if (!amount || !rate || !months) {
-    document.getElementById('result').innerText = "Please enter all fields.";
-    return;
-  }
-  const result = amount * (1 + (rate / 100) * (months / 12));
-  document.getElementById('result').innerText = "Estimated Return: $" + result.toFixed(2);
-}
-
-updateInvestors();
-setInterval(updateInvestors, 10000);
-</script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics-compat.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
-    authDomain: "smart-invest-tracker.firebaseapp.com",
-    projectId: "smart-invest-tracker",
-    storageBucket: "smart-invest-tracker.firebasestorage.app",
-    messagingSenderId: "464698438524",
-    appId: "1:464698438524:web:fa266eb1b29604bb8a6af9",
-    measurementId: "G-4YXZ0N9D5C"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
-</body>
-  <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6877b5cab00c4c190e1cb3c8/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
+      try {
+        await db.collection("investments").add({ name, email, amount, method, date });
+        Swal.fire("Success!", "Your investment has been recorded.", "success");
+        document.getElementById("investmentForm").reset();
+        document.getElementById("date").value = new Date().toLocaleDateString();
+      } catch (err) {
+        console.error("Error adding document: ", err);
+        Swal.fire("Error", "Failed to record your investment.", "error");
+      }
+    });
+  </script></body>
 </html>
