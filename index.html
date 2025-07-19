@@ -253,6 +253,16 @@ src="https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics-compat.js"></s
       window.location.href = "login.html";
     }
   });
+    
+    <button onclick="logout()">Logout</button>
+<script>
+  function logout() {
+    firebase.auth().signOut().then(() => {
+      window.location.href = "login.html";
+ 
+    });
+  }
+</script>
 </script><!-- Tawk.to Chat Script --><script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
