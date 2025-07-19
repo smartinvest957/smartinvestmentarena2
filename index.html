@@ -231,7 +231,11 @@ function calculate() {
 
 updateInvestors();
 setInterval(updateInvestors, 10000);
-</script><script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics-compat.js"></script><script>
+<script
+src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script 
+src="https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics-compat.js"></script>
+  <script>
   const firebaseConfig = {
     apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
     authDomain: "smart-invest-tracker.firebaseapp.com",
@@ -243,6 +247,11 @@ setInterval(updateInvestors, 10000);
   };
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (!user) {
+      window.location.href = "login.html";
+    }
+  });
 </script><!-- Tawk.to Chat Script --><script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
