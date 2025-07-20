@@ -231,52 +231,54 @@ function calculate() {
 
 updateInvestors();
 setInterval(updateInvestors, 10000);
-  
-<!-- Firebase SDKs -->
+
+<!-- ✅ Firebase Scripts -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 
 <script>
-  // ✅ Your Firebase config (Corrected bucket)
   const firebaseConfig = {
     apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
     authDomain: "smart-invest-tracker.firebaseapp.com",
     projectId: "smart-invest-tracker",
-    storageBucket: "smart-invest-tracker.appspot.com", // ✅ FIXED typo (.app → .appspot)
+    storageBucket: "smart-invest-tracker.appspot.com",
     messagingSenderId: "464698438524",
     appId: "1:464698438524:web:fa266eb1b29604bb8a6af9",
     measurementId: "G-4YXZ0N9D5C"
   };
 
-  // ✅ Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 
-  // ✅ Redirect if not logged in
   firebase.auth().onAuthStateChanged(function(user) {
     if (!user) {
       window.location.href = "login.html";
     }
   });
-  // ✅ Logout function (use in button onclick)
+
   function logout() {
     firebase.auth().signOut().then(() => {
       window.location.href = "login.html";
     });
   }
-  
 </script>
-  
-<!-- Tawk.to Chat Script --><script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6877b5cab00c4c190e1cb3c8/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-<\script><body>
+
+<!-- 🔘 Optional logout button -->
+<!-- <button onclick="logout()">Logout</button> -->
+
+<!-- Tawk.to Script -->
+<script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6877b5cab00c4c190e1cb3c8/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+</script>
+
+</body>
 </html>
