@@ -1,132 +1,193 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SmartInvest Arena - Real Investment Opportunities</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartInvest Arena</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
+    * {
       margin: 0;
       padding: 0;
-      background: #f4f4f4;
-      color: #333;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
     }
-    header {
-      text-align: center;
-      padding: 20px;
+
+    body {
       background-color: #111;
       color: #fff;
+      line-height: 1.6;
     }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    header img {
+      width: 100px;
+      margin-bottom: 1rem;
+    }
+
     nav {
-      background: #333;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      padding: 10px 0;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1rem;
+      background: #222;
     }
+
     nav a {
-      color: white;
-      margin: 0 10px;
+      color: #0ff;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: bold;
     }
-    nav a:hover {
-      text-decoration: underline;
-    }
+
     section {
-      padding: 40px 20px;
-      max-width: 1000px;
+      padding: 2rem 1rem;
+      max-width: 800px;
       margin: auto;
     }
+
+    .hero-video video {
+      width: 100%;
+      border: 4px solid #0ff;
+      border-radius: 12px;
+    }
+
+    .download-links, .investment-links {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .download-links a, .investment-links a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: #0ff;
+      color: #000;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
     footer {
       text-align: center;
-      background: #222;
-      color: #aaa;
-      padding: 20px;
-    }
-    .marquee {
+      padding: 1rem;
       background: #000;
-      color: #0f0;
+      color: #aaa;
+      font-size: 0.875rem;
+    }
+
+    .marquee {
+      background: #0ff;
+      color: #000;
       font-weight: bold;
-      padding: 10px;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .contact-form button {
-      padding: 10px 20px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .contact-form button:hover {
-      background-color: #218838;
+      padding: 0.5rem;
+      text-align: center;
     }
   </style>
 </head>
-<body><div class="marquee">
-  <marquee behavior="scroll" direction="left" scrollamount="5">
-    💰 Trusted by Over 10,000 Investors | 📈 Daily ROI Updates | 🧠 Smart Investing Made Easy | 🚀 Build Your Wealth Now
-  </marquee>
-</div><header>
-  <img src="logo.png" alt="Smart Invest Arena" style="width: 120px; margin-top: 20px;">
-  <h1>SmartInvest Arena</h1>
-  <p>Build Real Wealth Through Real Investments</p>
-</header><video width="100%" controls autoplay loop muted>
-  <source src="https://raw.githubusercontent.com/smartinvest957/smartinvestmentarena2/main/video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video><nav>
-  <a href="#about">About</a>
-  <a href="#opportunities">Opportunities</a>
-  <a href="#roi">ROI Estimates</a>
-  <a href="#calculator">Calculator</a>
-  <a href="#investors">Latest Investors</a>
-  <a href="#testimonials">Testimonials</a>
-  <a href="#contact">Contact</a>
-</nav><section id="about">
-  <h2>About Us</h2>
-  <p>SmartInvest Arena is a forward-thinking investment platform offering access to lucrative opportunities...</p>
-</section><section id="contact" class="contact-form">
-  <h2>Contact Us</h2>
-  <form>
-    <input type="text" name="name" placeholder="Your Name" required/>
-    <input type="email" name="email" placeholder="Your Email" required/>
-    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-  <p>Join our Telegram channel</p>
-</section><footer>
-  &copy; 2025 SmartInvest Arena — All rights reserved.
-</footer><!-- Firebase Scripts --><script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics-compat.js"></script><script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script><script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
-    authDomain: "smart-invest-tracker.firebaseapp.com",
-    projectId: "smart-invest-tracker",
-    storageBucket: "smart-invest-tracker.appspot.com",
-    messagingSenderId: "464698438524",
-    appId: "1:464698438524:web:fa266eb1b29604bb8a6af9",
-    measurementId: "G-4YXZ0N9D5C"
-  };
 
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script><!-- Tawk.to Script --><script type="text/javascript">
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6877b5cab00c4c190e1cb3c8/default';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-  })();
-</script></body>
+<body>
+  <div class="marquee">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+      ✅ 100% Secure | 🔐 Blockchain Powered | 💸 Instant ROI | 🚀 Join thousands of smart investors today!
+    </marquee>
+  </div>
+
+  <header>
+    <img src="logo.png" alt="SmartInvest Arena Logo">
+    <h1>SmartInvest Arena</h1>
+    <p>Build Wealth Through Real Investments</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#how">How it Works</a>
+    <a href="#downloads">App Downloads</a>
+    <a href="#invest">Invest Now</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section class="hero-video">
+    <video controls autoplay loop muted>
+      <source src="https://raw.githubusercontent.com/smartinvest957/smartinvestmentarena2/main/video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <section id="about">
+    <h2>About SmartInvest Arena</h2>
+    <p>SmartInvest Arena is a reliable platform that lets users invest in real, vetted opportunities. We provide transparency, blockchain integration, and real-time tracking of your investments. Our goal is to help you build consistent wealth over time.</p>
+  </section>
+
+  <section id="how">
+    <h2>How It Works</h2>
+    <ul>
+      <li>✅ Create an account or sign in</li>
+      <li>💡 Choose your preferred investment plan</li>
+      <li>💳 Make payment using crypto (USDT, BNB, ETH)</li>
+      <li>📈 Track your earnings live from your dashboard</li>
+    </ul>
+  </section>
+
+  <section id="downloads" class="download-links">
+    <h2>Download Our App</h2>
+    <a href="#">📥 Download for Android</a>
+    <a href="#">📥 Download for iOS</a>
+  </section>
+
+  <section id="invest" class="investment-links">
+    <h2>Start Investing Now</h2>
+    <a href="signup.html">🔐 Sign Up</a>
+    <a href="login.html">🔑 Log In</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: support@smartinvestarena.com</p>
+    <p>Telegram: @SmartInvestArena</p>
+  </section>
+
+  <footer>
+    &copy; 2025 SmartInvest Arena. All rights reserved.
+  </footer>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
+      authDomain: "smart-invest-tracker.firebaseapp.com",
+      projectId: "smart-invest-tracker",
+      storageBucket: "smart-invest-tracker.appspot.com",
+      messagingSenderId: "464698438524",
+      appId: "1:464698438524:web:fa266eb1b29604bb8a6af9",
+      measurementId: "G-4YXZ0N9D5C"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
+  <!-- Tawk.to live chat -->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/6877b5cab00c4c190e1cb3c8/default';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+</body>
+
 </html>
