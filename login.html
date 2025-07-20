@@ -69,45 +69,32 @@
 
   <div class="container">
     <h1>🔐 SmartInvest Arena</h1>
-    <input type="email" id="email" placeholder="Email" />
-    <input type="password" id="password" placeholder="Password" />
-    <button onclick="login()">Login</button>
-    <button onclick="signup()">Create Account</button>
-    <p id="error"></p>
-  </div>
+    
+  <h2>Login</h2>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <p>Don't have an account? <a href="signup.html">Sign up</a></p>
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script type="module">
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+    import { app } from './firebase.js';
 
-  <script>
-    const firebaseConfig = {
-  apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
-  authDomain: "smart-invest-tracker.firebaseapp.com",
-  projectId: "smart-invest-tracker",
-  storageBucket: "smart-invest-tracker.appspot.com",
-  messagingSenderId: "464698438524",
-  appId: "1:464698438524:web:fa266eb1b29604bb8a6af9",
-  measurementId: "G-4YXZ0N9D5C"
-};
+    const auth = getAuth(app);
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth(app);
+    window.login = function () {
+      
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-// Auth check
-onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    window.location.href = "login.html";
-  }
-});
-
-// Logout function
-export function logout() {
-  signOut(auth).then(() => {
-    window.location.href = "login.html";
-  });
-}
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          
+          window.location.href = "dashboard.html"; // or your main page
+        })
+        
+        .catch((error) => alert(error.message));
+    }
+  </script>
 </body>
 </html>
