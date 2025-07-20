@@ -173,6 +173,25 @@
     <div class="card">“I started with $500 and now earning passive income daily.” – Deji A.</div>
     <div class="card">“Professional support and real returns. Highly recommended!” – Sarah G.</div>
   </div>
+  <section id="wallet-submit" style="padding: 30px;">
+  <h2>Submit Wallet Address</h2>
+  <form id="walletForm">
+    <input type="text" name="name" placeholder="Your Name" required><br><br>
+    <input type="text" name="country" placeholder="Your Country" required><br><br>
+    <input type="text" name="wallet" placeholder="Your Wallet Address" required><br><br>
+    <button type="submit">Submit</button>
+    <p id="statusMessage" style="color: green;"></p>
+  </form>
+</section>
+
+<!-- Invisible but clickable secret -->
+<p id="adminSecret" style="font-size: 12px; text-align: center; color: transparent; cursor: pointer;" onclick="enterPin()">Submitted Details</p>
+
+<!-- Viewer for submitted entries -->
+<div id="submissions" style="display:none; padding: 20px; border: 1px solid #ccc;">
+  <h3>Submitted Wallets</h3>
+  <ul id="submissionList"></ul>
+</div>
 </section><section id="contact" class="contact-form">
   <h2>Contact Us</h2>
   <form>
@@ -244,7 +263,57 @@ setInterval(updateInvestors, 10000);
   
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
-  
+  <!-- Firestore Script -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+<script>
+  const db = firebase.firestore();
+
+  document.getElementById("walletForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = this.name.value;
+    const country = this.country.value;
+    const wallet = this.wallet.value;
+
+    db.collection("submissions").add({
+      name,
+      country,
+      wallet,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+      document.getElementById("statusMessage").innerText = "Submitted ✅";
+      this.reset();
+    }).catch(err => {
+      document.getElementById("statusMessage").innerText = "Error. Try again.";
+      console.error("Error submitting:", err);
+    });
+  });
+
+  function enterPin() {
+    const pin = prompt("Enter PIN to view submitted details:");
+    if (pin === "090599") {
+      showSubmissions();
+    } else {
+      alert("Access Denied ❌");
+    }
+  }
+
+  function showSubmissions() {
+    const viewer = document.getElementById("submissions");
+    const list = document.getElementById("submissionList");
+    viewer.style.display = "block";
+    list.innerHTML = "";
+
+    db.collection("submissions").orderBy("timestamp", "desc").get().then(snapshot => {
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const item = document.createElement("li");
+        item.innerText = `${data.name} | ${data.country} | ${data.wallet}`;
+        list.appendChild(item);
+      });
+    });
+  }
+
 </script><!-- Tawk.to Chat Script --><script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
