@@ -231,6 +231,7 @@ function calculate() {
 
 updateInvestors();
 setInterval(updateInvestors, 10000);
+  
 <!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics-compat.js"></script>
@@ -265,6 +266,9 @@ setInterval(updateInvestors, 10000);
       window.location.href = "login.html";
     });
   }
+  
+ <button onclick="logout()">Logout</button>
+  
 </script>
 <!-- Tawk.to Chat Script --><script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
