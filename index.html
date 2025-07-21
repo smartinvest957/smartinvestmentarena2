@@ -290,6 +290,30 @@ setInterval(updateInvestors, 10000);
     });
   }
 </script>
+
+  <div id="comment-list"></div>
+
+<script>
+  
+  function loadComments() {
+    db.collection("submissions")
+      .orderBy("timestamp", "desc")
+      .get()
+      .then(snapshot => {
+        const list = document.getElementById("comment-list");
+        list.innerHTML = "";
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const div = document.createElement("div");
+          div.innerHTML = `<strong>${data.name}</strong>: ${data.text}<hr>`;
+          list.appendChild(div);
+        });
+      });
+  }
+
+  // Load on page start
+  loadComments();
+
 </script>
   
 </script><!-- Tawk.to Chat Script --><script type="text/javascript">
