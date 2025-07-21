@@ -1,3 +1,7 @@
+<script 
+  src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script
+    src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
 const firebaseConfig = {
   apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
   authDomain: "smart-invest-tracker.firebaseapp.com",
