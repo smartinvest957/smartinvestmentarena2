@@ -173,7 +173,6 @@
     <div class="card">“I started with $500 and now earning passive income daily.” – Deji A.</div>
     <div class="card">“Professional support and real returns. Highly recommended!” – Sarah G.</div>
   </div>
-
 </section><section id="contact" class="contact-form">
   <h2>Contact Us</h2>
   <form>
@@ -182,22 +181,10 @@
     <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
     <button type="submit">Send Message</button>
   </form>
-  <p>Join our Telegram channel: </section>
-  <footer>
+  <p>Join our Telegram channel: <a href="https://t.me/whiteboard957" target="_blank">https://t.me/whiteboard957</a></p>
+</section><footer>
   &copy; 2025 SmartInvest Arena — All rights reserved.
-</footer>
-  
-  <section id="comments" style="background:#111; color:white; padding:20px;">
-  <h2 style="text-align:center;">💬 Leave a Comment</h2>
-  <div style="max-width:500px; margin:auto;">
-    <input id="comment-name" placeholder="Your Name" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;">
-    <textarea id="comment-text" placeholder="Your Comment" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;"></textarea>
-    <button onclick="postComment()" style="width:100%;padding:10px;background:#00ffae;border:none;border-radius:10px;font-weight:bold;">Post Comment</button>
-  </div>
-  <div id="all-comments" style="margin-top:30px;"></div>
-  </section>
-  
-  <script>
+</footer><script>
 const investors = [
   { name: "Investor A", amount: 1500, startProfit: 45, dailyRate: 0.02, startDate: '2025-07-13' },
   { name: "Investor B", amount: 3200, startProfit: 96, dailyRate: 0.015, startDate: '2025-07-14' },
@@ -244,78 +231,18 @@ function calculate() {
 
 updateInvestors();
 setInterval(updateInvestors, 10000);
-<!-- 🔥 Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
-
-<!-- 🔧 Firebase Initialization -->
-<script>
+</script><script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics-compat.js"></script><script>
   const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "smart-invest-tracker",  // ✅ Your actual Firebase project ID
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
+    authDomain: "smart-invest-tracker.firebaseapp.com",
+    projectId: "smart-invest-tracker",
+    storageBucket: "smart-invest-tracker.appspot.com",
+    messagingSenderId: "464698438524",
+    appId: "1:464698438524:web:fa266eb1b29604bb8a6af9",
+    measurementId: "G-4YXZ0N9D5C"
   };
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-
-<script>
-  function postComment() {
-    const name = document.getElementById('comment-name').value.trim();
-    const text = document.getElementById('comment-text').value.trim();
-
-    // ✅ Log the name and comment to console
-    console.log("📤 Submitting Comment:", name, text);
-
-    if (!name || !text) {
-      alert('Please fill out both fields.');
-      console.log("⚠️ Submission blocked: empty fields.");
-      return;
-    }
-
-    db.collection("submissions").add({
-      name,
-      text,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    .then(() => {
-      console.log("✅ Comment saved to Firestore");
-      document.getElementById('comment-name').value = "";
-      document.getElementById('comment-text').value = "";
-    })
-    .catch((error) => {
-      console.error("❌ Error saving comment:", error);
-    });
-  }
-</script>
-
-  <div id="comment-list"></div>
-
-<script>
-  
-  function loadComments() {
-    db.collection("submissions")
-      .orderBy("timestamp", "desc")
-      .get()
-      .then(snapshot => {
-        const list = document.getElementById("comment-list");
-        list.innerHTML = "";
-        snapshot.forEach(doc => {
-          const data = doc.data();
-          const div = document.createElement("div");
-          div.innerHTML = `<strong>${data.name}</strong>: ${data.text}<hr>`;
-          list.appendChild(div);
-        });
-      });
-  }
-
-  // Load on page start
-  loadComments();
-
-</script>
-  
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
 </script><!-- Tawk.to Chat Script --><script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -326,6 +253,5 @@ s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
-</script>
-</body>
-      </html>
+</script></body>
+</html>
