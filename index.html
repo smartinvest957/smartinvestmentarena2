@@ -106,6 +106,10 @@
     <h1>SmartInvest Arena</h1>
     <p>Build Real Wealth Through Real Investments</p>
   </header>
+     <video width="100%" controls autoplay loop muted>
+  <source src="https://raw.githubusercontent.com/smartinvest957/smartinvestmentarena2/main/video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
   <nav>
     <a href="#about">About</a>
     <a href="#opportunities">Opportunities</a>
@@ -193,54 +197,70 @@
     <div id="commentsContainer" style="margin-top:30px;"></div>
   </section>  <footer>
     &copy; 2025 SmartInvest Arena — All rights reserved.
-  </footer>  <!-- Firebase SDK -->  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>  <script>
+  </footer>  
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+
+  <script>
     const firebaseConfig = {
       apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
       authDomain: "smart-invest-tracker.firebaseapp.com",
       projectId: "smart-invest-tracker",
       storageBucket: "smart-invest-tracker.appspot.com",
       messagingSenderId: "464698438524",
-      appId: "1:464698438524:web:03449f9e5013bedc8a6af9"
+      appId: "1:464698438524:web:03449f9e5013bedc8a6af9",
+      measurementId: "G-E447YBQTG5"
     };
+
     const app = firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    async function postComment() {
-      const name = document.getElementById("commentName").value.trim();
-      const text = document.getElementById("commentText").value.trim();
+    function postComment() {
+      const name = document.getElementById('nameInput').value.trim();
+      const comment = document.getElementById('commentInput').value.trim();
 
-      if (!name || !text) {
-        alert("Please fill in all fields.");
+      if (!name || !comment) {
+        alert("Both name and comment are required.");
         return;
       }
 
-      try {
-        await db.collection("comments").add({
-          name: name,
-          comment: text,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        alert("Comment posted ✅");
-        document.getElementById("commentName").value = "";
-        document.getElementById("commentText").value = "";
+      db.collection("comments").add({
+        name: name,
+        comment: comment,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      })
+      .then(() => {
+        document.getElementById('nameInput').value = '';
+        document.getElementById('commentInput').value = '';
         loadComments();
-      } catch (error) {
-        console.error("Error posting comment:", error);
-        alert("Failed to post comment.");
-      }
+      })
+      .catch((error) => {
+        console.error("Error adding comment: ", error);
+        alert("SmartInvest failed to post comment. Try again later.");
+      });
     }
 
-    async function loadComments() {
-      const container = document.getElementById("commentsContainer");
-      container.innerHTML = "";
-      const snapshot = await db.collection("comments").orderBy("timestamp", "desc").get();
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const div = document.createElement("div");
-        div.style.marginBottom = "10px";
-        div.innerHTML = `<strong>${data.name}</strong>: ${data.comment}`;
-        container.appendChild(div);
-      });
+    function loadComments() {
+      const commentsContainer = document.getElementById('commentsContainer');
+      commentsContainer.innerHTML = "Loading comments...";
+
+      db.collection("comments").orderBy("timestamp", "desc").get()
+        .then((querySnapshot) => {
+          commentsContainer.innerHTML = "";
+          querySnapshot.forEach((doc) => {
+            const comment = doc.data();
+            const commentElement = document.createElement("div");
+            commentElement.style.border = "1px solid #ccc";
+            commentElement.style.marginBottom = "10px";
+            commentElement.style.padding = "10px";
+            commentElement.innerHTML = `<strong>${comment.name}</strong><br>${comment.comment}`;
+            commentsContainer.appendChild(commentElement);
+          });
+        })
+        .catch((error) => {
+          commentsContainer.innerHTML = "Failed to load comments.";
+          console.error("Error loading comments: ", error);
+        });
     }
 
     window.onload = loadComments;
