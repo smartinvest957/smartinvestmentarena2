@@ -265,8 +265,13 @@ setInterval(updateInvestors, 10000);
   function postComment() {
     const name = document.getElementById('comment-name').value.trim();
     const text = document.getElementById('comment-text').value.trim();
+
+    // ✅ Log the name and comment to console
+    console.log("📤 Submitting Comment:", name, text);
+
     if (!name || !text) {
       alert('Please fill out both fields.');
+      console.log("⚠️ Submission blocked: empty fields.");
       return;
     }
 
@@ -274,30 +279,17 @@ setInterval(updateInvestors, 10000);
       name,
       text,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    }).then(() => {
+    })
+    .then(() => {
+      console.log("✅ Comment saved to Firestore");
       document.getElementById('comment-name').value = "";
       document.getElementById('comment-text').value = "";
+    })
+    .catch((error) => {
+      console.error("❌ Error saving comment:", error);
     });
   }
-
-  function loadComments() {
-    db.collection("site_comments").orderBy("timestamp", "desc")
-      .onSnapshot(snapshot => {
-        const container = document.getElementById("all-comments");
-        container.innerHTML = "";
-        snapshot.forEach(doc => {
-          const data = doc.data();
-          const commentHTML = `
-            <div style="background:#222; margin:10px auto; padding:15px; border-radius:10px; max-width:500px;">
-              <strong style="color:#00ffae;">${data.name}</strong><br>
-              <p>${data.text}</p>
-            </div>`;
-          container.innerHTML += commentHTML;
-        });
-      });
-  }
-
-  loadComments();
+</script>
 </script>
   
 </script><!-- Tawk.to Chat Script --><script type="text/javascript">
