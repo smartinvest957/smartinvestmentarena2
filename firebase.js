@@ -2,15 +2,15 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
 
-<script>
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "smart-invest-tracker",  // Use your actual Firebase project ID
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_ID",
-    appId: "YOUR_APP_ID"
-  };
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-</script>
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
+  authDomain: "smart-invest-tracker.firebaseapp.com",
+  projectId: "smart-invest-tracker",
+  storageBucket: "smart-invest-tracker.firebasestorage.app",
+  messagingSenderId: "464698438524",
+  appId: "1:464698438524:web:03449f9e5013bedc8a6af9",
+  measurementId: "G-E447YBQTGS"
+};
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
