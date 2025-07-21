@@ -95,26 +95,26 @@
     }
   </style>
 </head>
-<body><div class="marquee">
-  <marquee behavior="scroll" direction="left" scrollamount="5">
-    💰 Trusted by Over 10,000 Investors | 📈 Daily ROI Updates | 🧠 Smart Investing Made Easy | 🚀 Build Your Wealth Now
-  </marquee>
-</div><header>
-  <img src="logo.png" alt="Smart Invest Arena" style="width: 120px; margin-top: 20px;">
-  <h1>SmartInvest Arena</h1>
-  <p>Build Real Wealth Through Real Investments</p>
-</header><video width="100%" controls autoplay loop muted>
-  <source src="https://raw.githubusercontent.com/smartinvest957/smartinvestmentarena2/main/video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video><nav>
-  <a href="#about">About</a>
-  <a href="#opportunities">Opportunities</a>
-  <a href="#roi">ROI Estimates</a>
-  <a href="#calculator">Calculator</a>
-  <a href="#investors">Latest Investors</a>
-  <a href="#testimonials">Testimonials</a>
-  <a href="#contact">Contact</a>
-</nav><!-<section>
+<body>
+  <div class="marquee">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+      💰 Trusted by Over 10,000 Investors | 📈 Daily ROI Updates | 🧠 Smart Investing Made Easy | 🚀 Build Your Wealth Now
+    </marquee>
+  </div>
+  <header>
+    <img src="logo.png" alt="Smart Invest Arena" style="width: 120px; margin-top: 20px;">
+    <h1>SmartInvest Arena</h1>
+    <p>Build Real Wealth Through Real Investments</p>
+  </header>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#opportunities">Opportunities</a>
+    <a href="#roi">ROI Estimates</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#investors">Latest Investors</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </nav> 
   <h2>🔐 Get Trust Wallet</h2>
   <p>To invest securely, download the official Trust Wallet from any of the links below:</p>
   <ul>
@@ -182,133 +182,67 @@
     <button type="submit">Send Message</button>
   </form>
   <p>Join our Telegram channel: 
-</section><footer>
+    
   <section id="comments" style="background:#111; color:white; padding:20px;">
-  <h2 style="text-align:center;">💬 Leave a Comment</h2>
-  <div style="max-width:500px; margin:auto;">
-    <input id="comment-name" placeholder="Your Name" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;">
-    <textarea id="comment-text" placeholder="Your Comment" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;"></textarea>
-    <button onclick="postComment()" style="width:100%;padding:10px;background:#00ffae;border:none;border-radius:10px;font-weight:bold;">Post Comment</button>
-  </div>
-  <div id="all-comments" style="margin-top:30px;"></div>
-  </section>
-  &copy; 2025 SmartInvest Arena — All rights reserved.
-</footer>
-  
-  <script>
-const investors = [
-  { name: "Investor A", amount: 1500, startProfit: 45, dailyRate: 0.02, startDate: '2025-07-13' },
-  { name: "Investor B", amount: 3200, startProfit: 96, dailyRate: 0.015, startDate: '2025-07-14' },
-  { name: "Investor C", amount: 780,  startProfit: 23, dailyRate: 0.025, startDate: '2025-07-15' },
-  { name: "Investor D", amount: 5000, startProfit: 150, dailyRate: 0.01,  startDate: '2025-07-15' },
-  { name: "Investor E", amount: 950,  startProfit: 28.5, dailyRate: 0.02,  startDate: '2025-07-16' }
-];
+    <h2 style="text-align:center;">💬 Leave a Comment</h2>
+    <div style="max-width:500px; margin:auto;">
+      <input id="commentName" placeholder="Your Name" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;">
+      <textarea id="commentText" placeholder="Your Comment" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;"></textarea>
+      <button onclick="postComment()" style="width:100%;padding:10px;background:#00ffae;border:none;border-radius:10px;font-weight:bold;">Post Comment</button>
+    </div>
+    <div id="commentsContainer" style="margin-top:30px;"></div>
+  </section>  <footer>
+    &copy; 2025 SmartInvest Arena — All rights reserved.
+  </footer>  <!-- Firebase SDK -->  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
+      authDomain: "smart-invest-tracker.firebaseapp.com",
+      projectId: "smart-invest-tracker",
+      storageBucket: "smart-invest-tracker.appspot.com",
+      messagingSenderId: "464698438524",
+      appId: "1:464698438524:web:03449f9e5013bedc8a6af9"
+    };
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-function daysBetween(startDate) {
-  const start = new Date(startDate);
-  const now = new Date();
-  const diff = now - start;
-  return Math.floor(diff / (1000 * 60 * 60 * 24));
-}
+    async function postComment() {
+      const name = document.getElementById("commentName").value.trim();
+      const text = document.getElementById("commentText").value.trim();
 
-function updateInvestors() {
-  const list = document.getElementById('investor-list');
-  list.innerHTML = '';
-  investors.forEach(inv => {
-    const days = daysBetween(inv.startDate);
-    const profit = inv.startProfit + inv.amount * inv.dailyRate * days;
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      <strong>${inv.name}</strong><br>
-      Invested: $${inv.amount}<br>
-      Profit after ${days} day(s): <span style="color:#00ffcc;">$${profit.toFixed(2)}</span>
-    `;
-    list.appendChild(card);
-  });
-}
+      if (!name || !text) {
+        alert("Please fill in all fields.");
+        return;
+      }
 
-function calculate() {
-  const amount = parseFloat(document.getElementById('amount').value);
-  const rate = parseFloat(document.getElementById('rate').value);
-  const months = parseFloat(document.getElementById('months').value);
-  if (!amount || !rate || !months) {
-    document.getElementById('result').innerText = "Please enter all fields.";
-    return;
-  }
-  const result = amount * (1 + (rate / 100) * (months / 12));
-  document.getElementById('result').innerText = "Estimated Return: $" + result.toFixed(2);
-}
-
-updateInvestors();
-setInterval(updateInvestors, 10000);
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
-  authDomain: "smart-invest-tracker.firebaseapp.com",
-  projectId: "smart-invest-tracker",
-  storageBucket: "smart-invest-tracker.firebasestorage.app",
-  messagingSenderId: "464698438524",
-  appId: "1:464698438524:web:03449f9e5013bedc8a6af9",
-  measurementId: "G-E447YBQTGS"
-};
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-
-  <script>
-  document.getElementById("commentForm").addEventListener("submit", async function (e) {
-    e.preventDefault();
-
-    const name = document.getElementById("commentName").value.trim();
-    const text = document.getElementById("commentText").value.trim();
-
-    if (!name || !text) {
-      alert("Please fill in all fields.");
-      return;
+      try {
+        await db.collection("comments").add({
+          name: name,
+          comment: text,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        alert("Comment posted ✅");
+        document.getElementById("commentName").value = "";
+        document.getElementById("commentText").value = "";
+        loadComments();
+      } catch (error) {
+        console.error("Error posting comment:", error);
+        alert("Failed to post comment.");
+      }
     }
 
-    try {
-      await db.collection("comments").add({
-        name: name,
-        comment: text,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    async function loadComments() {
+      const container = document.getElementById("commentsContainer");
+      container.innerHTML = "";
+      const snapshot = await db.collection("comments").orderBy("timestamp", "desc").get();
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const div = document.createElement("div");
+        div.style.marginBottom = "10px";
+        div.innerHTML = `<strong>${data.name}</strong>: ${data.comment}`;
+        container.appendChild(div);
       });
-      alert("Comment posted ✅");
-      document.getElementById("commentForm").reset();
-      loadComments(); // reload comments
-    } catch (error) {
-      console.error("Error posting comment:", error);
-      alert("Failed to post comment.");
     }
-  });
 
-  async function loadComments() {
-    const container = document.getElementById("commentsContainer");
-    container.innerHTML = "";
-
-    const snapshot = await db.collection("comments").orderBy("timestamp", "desc").get();
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      const commentDiv = document.createElement("div");
-      commentDiv.style.marginBottom = "10px";
-      commentDiv.innerHTML = `<strong>${data.name}</strong>: ${data.comment}`;
-      container.appendChild(commentDiv);
-    });
-  }
-
-  // Load on page open
-  loadComments();
-</script>
-  
-</script><!-- Tawk.to Chat Script --><script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6877b5cab00c4c190e1cb3c8/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script></body>
+    window.onload = loadComments;
+  </script></body>
 </html>
