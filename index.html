@@ -270,7 +270,7 @@ setInterval(updateInvestors, 10000);
       return;
     }
 
-    db.collection("site_comments").add({
+    db.collection("submissions").add({
       name,
       text,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
