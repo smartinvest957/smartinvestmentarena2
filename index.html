@@ -185,85 +185,85 @@
     <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
     <button type="submit">Send Message</button>
   </form>
-  <p>Join our Telegram channel: 
+  <p>Join our Telegram channel:
     
-  <section id="comments" style="background:#111; color:white; padding:20px;">
-    <h2 style="text-align:center;">💬 Leave a Comment</h2>
-    <div style="max-width:500px; margin:auto;">
-      <input id="commentName" placeholder="Your Name" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;">
-      <textarea id="commentText" placeholder="Your Comment" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;"></textarea>
-      <button onclick="postComment()" style="width:100%;padding:10px;background:#00ffae;border:none;border-radius:10px;font-weight:bold;">Post Comment</button>
-    </div>
-    <div id="commentsContainer" style="margin-top:30px;"></div>
-  </section>  <footer>
-    &copy; 2025 SmartInvest Arena — All rights reserved.
-  </footer>  
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+  <div 
+    
+    class="container">
+    <h2>💬 Leave a Comment</h2>
+    <input type="text" id="comment-name" placeholder="Your Name">
+    <textarea id="comment-text" placeholder="Your Comment"></textarea>
+    <button id="postBtn">Post Comment</button>
+    <div id="all-comments"></div>
+  </div>
+</main>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
-      authDomain: "smart-invest-tracker.firebaseapp.com",
-      projectId: "smart-invest-tracker",
-      storageBucket: "smart-invest-tracker.appspot.com",
-      messagingSenderId: "464698438524",
-      appId: "1:464698438524:web:03449f9e5013bedc8a6af9",
-      measurementId: "G-E447YBQTG5"
-    };
+<footer>
+  &copy; 2025 SmartInvest Arena. All rights reserved.
+</footer>
 
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+<!-- Firebase Integration -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-    function postComment() {
-      const name = document.getElementById('nameInput').value.trim();
-      const comment = document.getElementById('commentInput').value.trim();
+  // Your Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
+    authDomain: "smart-invest-tracker.firebaseapp.com",
+    projectId: "smart-invest-tracker",
+    storageBucket: "smart-invest-tracker.appspot.com",
+    messagingSenderId: "464698438524",
+    appId: "1:464698438524:web:03449f9e5013bedc8a6af9",
+    measurementId: "G-E447YBQTGS"
+  };
 
-      if (!name || !comment) {
-        alert("Both name and comment are required.");
-        return;
-      }
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-      db.collection("comments").add({
-        name: name,
-        comment: comment,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      })
-      .then(() => {
-        document.getElementById('nameInput').value = '';
-        document.getElementById('commentInput').value = '';
-        loadComments();
-      })
-      .catch((error) => {
-        console.error("Error adding comment: ", error);
-        alert("SmartInvest failed to post comment. Try again later.");
+  // Post a comment
+  document.getElementById("postBtn").addEventListener("click", async () => {
+    const name = document.getElementById("comment-name").value.trim();
+    const comment = document.getElementById("comment-text").value.trim();
+
+    if (!name || !comment) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "comments"), {
+        name,
+        comment,
+        timestamp: serverTimestamp()
       });
+      alert("Comment posted ✅");
+      document.getElementById("comment-name").value = "";
+      document.getElementById("comment-text").value = "";
+      loadComments();
+    } catch (e) {
+      console.error("Error adding comment: ", e);
     }
+  });
 
-    function loadComments() {
-      const commentsContainer = document.getElementById('commentsContainer');
-      commentsContainer.innerHTML = "Loading comments...";
+  // Load comments
+  async function loadComments() {
+    const commentsContainer = document.getElementById("all-comments");
+    commentsContainer.innerHTML = "";
 
-      db.collection("comments").orderBy("timestamp", "desc").get()
-        .then((querySnapshot) => {
-          commentsContainer.innerHTML = "";
-          querySnapshot.forEach((doc) => {
-            const comment = doc.data();
-            const commentElement = document.createElement("div");
-            commentElement.style.border = "1px solid #ccc";
-            commentElement.style.marginBottom = "10px";
-            commentElement.style.padding = "10px";
-            commentElement.innerHTML = `<strong>${comment.name}</strong><br>${comment.comment}`;
-            commentsContainer.appendChild(commentElement);
-          });
-        })
-        .catch((error) => {
-          commentsContainer.innerHTML = "Failed to load comments.";
-          console.error("Error loading comments: ", error);
-        });
-    }
+    const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
+    const querySnapshot = await getDocs(q);
 
-    window.onload = loadComments;
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      const commentDiv = document.createElement("div");
+      commentDiv.innerHTML = `<strong>${data.name}</strong><br>${data.comment}`;
+      commentsContainer.appendChild(commentDiv);
+    });
+  }
+
+  // Load on page load
+  loadComments();
     </script><!-- Tawk.to Chat Script --><script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
