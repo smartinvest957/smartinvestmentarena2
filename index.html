@@ -173,32 +173,7 @@
     <div class="card">“I started with $500 and now earning passive income daily.” – Deji A.</div>
     <div class="card">“Professional support and real returns. Highly recommended!” – Sarah G.</div>
   </div>
-  <section id="wallet-submit" style="padding: 30px;">
-  <h2>Submit Wallet Address</h2>
-  <form id="walletForm">
-    <input type="text" name="name" placeholder="Your Name" required><br><br>
-    <input type="text" name="country" placeholder="Your Country" required><br><br>
-    <input type="text" name="wallet" placeholder="Your Wallet Address" required><br><br>
-    <button type="submit">Submit</button>
-    <p id="statusMessage" style="color: green;"></p>
-  </form>
-</section>
 
-<!-- Secret unlocker (hidden text) -->
-<p id="unlockPrompt" style="font-size: 10px; text-align: center; color: transparent; cursor: pointer;" onclick="askCode()">Submitted Details</p>
-
-<!-- Hidden area for code entry -->
-<div id="codeEntry" style="display:none; text-align:center;">
-  <input type="password" id="codeInput" placeholder="Enter Admin Code" maxlength="6" />
-  <button onclick="verifyCode()">Unlock</button>
-  <p id="codeError" style="color:red;"></p>
-</div>
-
-<!-- Hidden Submissions viewer -->
-<div id="submissions" style="display:none; padding: 20px; border: 1px solid #ccc;">
-  <h3>Submitted Wallets</h3>
-  <ul id="submissionList"></ul>
-</div>
 </section><section id="contact" class="contact-form">
   <h2>Contact Us</h2>
   <form>
