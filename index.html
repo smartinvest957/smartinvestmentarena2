@@ -210,7 +210,19 @@
   <p>Join our Telegram channel: </section>
   <footer>
   &copy; 2025 SmartInvest Arena — All rights reserved.
-</footer><script>
+</footer>
+  
+  <section id="comments" style="background:#111; color:white; padding:20px;">
+  <h2 style="text-align:center;">💬 Leave a Comment</h2>
+  <div style="max-width:500px; margin:auto;">
+    <input id="comment-name" placeholder="Your Name" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;">
+    <textarea id="comment-text" placeholder="Your Comment" style="width:100%;padding:10px;margin-bottom:10px;border-radius:10px;border:none;"></textarea>
+    <button onclick="postComment()" style="width:100%;padding:10px;background:#00ffae;border:none;border-radius:10px;font-weight:bold;">Post Comment</button>
+  </div>
+  <div id="all-comments" style="margin-top:30px;"></div>
+  </section>
+  
+  <script>
 const investors = [
   { name: "Investor A", amount: 1500, startProfit: 45, dailyRate: 0.02, startDate: '2025-07-13' },
   { name: "Investor B", amount: 3200, startProfit: 96, dailyRate: 0.015, startDate: '2025-07-14' },
@@ -257,81 +269,62 @@ function calculate() {
 
 updateInvestors();
 setInterval(updateInvestors, 10000);
-</script><script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics-compat.js"></script><script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
-    authDomain: "smart-invest-tracker.firebaseapp.com",
-    projectId: "smart-invest-tracker",
-    storageBucket: "smart-invest-tracker.appspot.com",
-    messagingSenderId: "464698438524",
-    appId: "1:464698438524:web:fa266eb1b29604bb8a6af9",
-    measurementId: "G-4YXZ0N9D5C"
-  };
-  
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-  <!-- Firestore Script -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+<!-- 🔥 Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
 
+<!-- 🔧 Firebase Initialization -->
 <script>
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "smart-invest-tracker",  // ✅ Your actual Firebase project ID
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_ID",
+    appId: "YOUR_APP_ID"
+  };
+  const app = firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
-  // Submit form logic
-  document.getElementById("walletForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const name = this.name.value;
-    const country = this.country.value;
-    const wallet = this.wallet.value;
+<script>
+  function postComment() {
+    const name = document.getElementById('comment-name').value.trim();
+    const text = document.getElementById('comment-text').value.trim();
+    if (!name || !text) {
+      alert('Please fill out both fields.');
+      return;
+    }
 
-    db.collection("submissions").add({
+    db.collection("site_comments").add({
       name,
-      country,
-      wallet,
+      text,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     }).then(() => {
-      document.getElementById("statusMessage").innerText = "Submitted ✅";
-      this.reset();
-    }).catch(err => {
-      document.getElementById("statusMessage").innerText = "Error. Try again.";
-      console.error("Error submitting:", err);
+      document.getElementById('comment-name').value = "";
+      document.getElementById('comment-text').value = "";
     });
-  });
-
-  // Show code input
-  function askCode() {
-    document.getElementById("codeEntry").style.display = "block";
   }
 
-  // Unlock submissions
-  function verifyCode() {
-    const code = document.getElementById("codeInput").value;
-    if (code === "090599") {
-      showSubmissions();
-    } else {
-      document.getElementById("codeError").innerText = "Incorrect code!";
-    }
-  }
-
-  // View entries
-  function showSubmissions() {
-    document.getElementById("submissions").style.display = "block";
-    document.getElementById("codeEntry").style.display = "none";
-    document.getElementById("codeError").innerText = "";
-
-    const list = document.getElementById("submissionList");
-    list.innerHTML = "";
-
-    db.collection("submissions").orderBy("timestamp", "desc").get().then(snapshot => {
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const item = document.createElement("li");
-        item.innerText = `${data.name} | ${data.country} | ${data.wallet}`;
-        list.appendChild(item);
+  function loadComments() {
+    db.collection("site_comments").orderBy("timestamp", "desc")
+      .onSnapshot(snapshot => {
+        const container = document.getElementById("all-comments");
+        container.innerHTML = "";
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const commentHTML = `
+            <div style="background:#222; margin:10px auto; padding:15px; border-radius:10px; max-width:500px;">
+              <strong style="color:#00ffae;">${data.name}</strong><br>
+              <p>${data.text}</p>
+            </div>`;
+          container.innerHTML += commentHTML;
+        });
       });
-    });
   }
-</script>
 
+  loadComments();
+</script>
+  
 </script><!-- Tawk.to Chat Script --><script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
