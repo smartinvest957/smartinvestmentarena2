@@ -1,9 +1,11 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SmartInvest Arena - Real Investment Opportunities</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -22,13 +24,8 @@
       background: #111;
       border-bottom: 1px solid #222;
     }
-    header h1 {
-      font-size: 2.8rem;
-      color: #00ffcc;
-    }
-    header p {
-      color: #aaa;
-    }
+    header h1 { font-size: 2.8rem; color: #00ffcc; }
+    header p { color: #aaa; }
     nav {
       background: #141414;
       text-align: center;
@@ -37,12 +34,7 @@
       top: 0;
       z-index: 10;
     }
-    nav a {
-      color: #00ffcc;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: bold;
-    }
+    nav a { color: #00ffcc; margin: 0 1rem; text-decoration: none; font-weight: bold; }
     section h2 {
       color: #00ccff;
       margin-bottom: 1rem;
@@ -59,7 +51,7 @@
       padding: 1rem;
       border-radius: 8px;
       border-left: 4px solid #00ffcc;
-      box-shadow: 0 0 10px rgba(0,255,204,0.1);
+      box-shadow: 0 0 10px rgba(0,255,204,0.06);
     }
     .calculator input, .contact-form input, .contact-form textarea {
       width: 100%;
@@ -67,6 +59,8 @@
       padding: 10px;
       border-radius: 6px;
       border: none;
+      background: #0f0f0f;
+      color: #fff;
     }
     .calculator button, .contact-form button {
       background: #00ccff;
@@ -93,6 +87,8 @@
       margin-top: 4rem;
       border-top: 1px solid #222;
     }
+    a.code-link { color: #88f7ff; word-break: break-all; }
+    .small { font-size: 0.9rem; color:#bbb; }
   </style>
 </head>
 <body>
@@ -101,15 +97,18 @@
       💰 Trusted by Over 10,000 Investors | 📈 Daily ROI Updates | 🧠 Smart Investing Made Easy | 🚀 Build Your Wealth Now
     </marquee>
   </div>
+
   <header>
     <img src="logo.png" alt="Smart Invest Arena" style="width: 120px; margin-top: 20px;">
     <h1>SmartInvest Arena</h1>
     <p>Build Real Wealth Through Real Investments</p>
   </header>
-     <video width="100%" controls autoplay loop muted>
-  <source src="https://raw.githubusercontent.com/smartinvest957/smartinvestmentarena2/main/video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+
+  <video width="100%" controls autoplay loop muted playsinline>
+    <source src="https://raw.githubusercontent.com/smartinvest957/smartinvestmentarena2/main/video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
   <nav>
     <a href="#about">About</a>
     <a href="#opportunities">Opportunities</a>
@@ -118,152 +117,235 @@
     <a href="#investors">Latest Investors</a>
     <a href="#testimonials">Testimonials</a>
     <a href="#contact">Contact</a>
-  </nav> 
-  <h2>🔐 Get Trust Wallet</h2>
-  <p>To invest securely, download the official Trust Wallet from any of the links below:</p>
-  <ul>
-    <li><a href="https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp" target="_blank">📱 Android</a></li>
-    <li><a href="https://apps.apple.com/app/trust-crypto-bitcoin-wallet/id1288339409" target="_blank">🍎 iOS</a></li>
-    <li><a href="https://trustwallet.com/" target="_blank">🌐 Official Website</a></li>
-  </ul>
-</section><section>
-  <h2>💼 Send Your Investment</h2>
-  <p><strong>BTC:</strong><br>
-    <a href="bitcoin:bc1qwecurc0f297uuveq7xl4svwzl4vavu5zv25vnm" target="_blank">bc1qwecurc0f297uuveq7xl4svwzl4vavu5zv25vnm</a>
-  </p>
-  <p><strong>Ethereum (ERC20):</strong><br>
-    <a href="ethereum:0xde486e8e461247aeb00a5cbe8eb64dad07980674" target="_blank">0xde486e8e461247aeb00a5cbe8eb64dad07980674</a>
-  </p>
-  <p><strong>USDT (TRC20):</strong><br>
-    <a href="tron:FH9eyyMvg12CVdjXuWN4q1VfawHDfAET9Zd9d7sSLz2A" target="_blank">FH9eyyMvg12CVdjXuWN4q1VfawHDfAET9Zd9d7sSLz2A</a>
-  </p>
-</section><section id="about">
-  <h2>About Us</h2>
-  <p>SmartInvest Arena is a forward-thinking investment platform offering access to lucrative opportunities across cryptocurrency, real estate, stocks, startups, and more. We aim to provide transparent and profitable investment strategies that grow your capital daily.</p>
-</section><section id="opportunities">
-  <h2>Investment Opportunities</h2>
-  <div class="investment-options">
-    <div class="card"><h3>Cryptocurrency</h3><p>Bitcoin, Ethereum, and altcoins offering 20–100% annual returns.</p></div>
-    <div class="card"><h3>Real Estate</h3><p>Rental properties and REITs with income and appreciation.</p></div>
-    <div class="card"><h3>Stock Market</h3><p>Blue chip and growth stocks with 10–15% ROI.</p></div>
-    <div class="card"><h3>Startups</h3><p>Private equity and VC with high-growth upside.</p></div>
-    <div class="card"><h3>Agriculture</h3><p>Farmland and agro-tech investments.</p></div>
-    <div class="card"><h3>Digital Assets</h3><p>Domains, NFTs, IPs for long-term value.</p></div>
-  </div>
-</section><section id="roi">
-  <h2>Estimated ROI by Category</h2>
-  <ul>
-    <li>Crypto: 20% – 100%</li>
-    <li>Real Estate: 8% – 15%</li>
-    <li>Stocks: 10% – 15%</li>
-    <li>Startups: 30% – 200%</li>
-    <li>Agriculture: 10% – 20%</li>
-    <li>Digital Assets: 15% – 50%</li>
-  </ul>
-</section><section id="calculator" class="calculator">
-  <h2>Investment Calculator</h2>
-  <input type="number" id="amount" placeholder="Amount to Invest ($)" />
-  <input type="number" id="rate" placeholder="Expected ROI (%)" />
-  <input type="number" id="months" placeholder="Duration (Months)" />
-  <button onclick="calculate()">Calculate</button>
-  <div id="result" style="margin-top:1rem; font-weight:bold; color:#00ffcc;"></div>
-</section><section id="investors">
-  <h2>Latest Investors & Profits</h2>
-  <div class="latest-investors" id="investor-list"></div>
-</section><section id="testimonials">
-  <h2>What Our Investors Say</h2>
-  <div class="testimonials">
-    <div class="card">“My portfolio grew 3x in 6 months. SmartInvest is a game changer!” – Maria K.</div>
-    <div class="card">“I started with $500 and now earning passive income daily.” – Deji A.</div>
-    <div class="card">“Professional support and real returns. Highly recommended!” – Sarah G.</div>
-  </div>
-</section><section 
-            
-<!-- Telegram Button -->
-<a href="https://t.me/smartinvestarenas" target="_blank" style="background-color:#0088cc;color:white;padding:12px 20px;border-radius:6px;text-decoration:none;font-weight:bold;display:inline-block;">
-  <i style="margin-right:8px;" class="fa-brands fa-telegram"></i> Join us on Telegram
-</a>
+  </nav>
 
-<!-- Font Awesome for the icon (only include this once in your HTML head or before </body>) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</main>
+  <section id="wallet">
+    <h2>🔐 Get Trust Wallet</h2>
+    <p>To invest securely, download the official Trust Wallet from any of the links below:</p>
+    <ul>
+      <li><a href="https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp" target="_blank">📱 Android</a></li>
+      <li><a href="https://apps.apple.com/app/trust-crypto-bitcoin-wallet/id1288339409" target="_blank">🍎 iOS</a></li>
+      <li><a href="https://trustwallet.com/" target="_blank">🌐 Official Website</a></li>
+    </ul>
+  </section>
 
-<footer>
-  &copy; 2025 SmartInvest Arena. All rights reserved.
-</footer>
+  <section id="send">
+    <h2>💼 Send Your Investment</h2>
+    <p class="small"><strong>Important:</strong> Double-check the address and network before sending funds.</p>
+    <p><strong>BTC:</strong><br>
+      <a class="code-link" href="bitcoin:bc1qwecurc0f297uuveq7xl4svwzl4vavu5zv25vnm" target="_blank">bc1qwecurc0f297uuveq7xl4svwzl4vavu5zv25vnm</a>
+    </p>
+    <p><strong>Ethereum (ERC20):</strong><br>
+      <a class="code-link" href="ethereum:0xde486e8e461247aeb00a5cbe8eb64dad07980674" target="_blank">0xde486e8e461247aeb00a5cbe8eb64dad07980674</a>
+    </p>
+    <p><strong>USDT (TRC20):</strong><br>
+      <a class="code-link" href="tron:FH9eyyMvg12CVdjXuWN4q1VfawHDfAET9Zd9d7sSLz2A" target="_blank">FH9eyyMvg12CVdjXuWN4q1VfawHDfAET9Zd9d7sSLz2A</a>
+    </p>
+  </section>
 
-<!-- Firebase Integration -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-  import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+  <section id="about">
+    <h2>About Us</h2>
+    <p>SmartInvest Arena is a forward-thinking investment platform offering access to opportunities across cryptocurrency, real estate, stocks, startups, and more. We aim to provide transparent strategies that grow capital over time.</p>
+  </section>
 
-  // Your Firebase Config
-  const firebaseConfig = {
-    apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
-    authDomain: "smart-invest-tracker.firebaseapp.com",
-    projectId: "smart-invest-tracker",
-    storageBucket: "smart-invest-tracker.appspot.com",
-    messagingSenderId: "464698438524",
-    appId: "1:464698438524:web:03449f9e5013bedc8a6af9",
-    measurementId: "G-E447YBQTGS"
-  };
+  <section id="opportunities">
+    <h2>Investment Opportunities</h2>
+    <div class="investment-options">
+      <div class="card"><h3>Cryptocurrency</h3><p>Bitcoin, Ethereum and altcoins — high volatility, high potential return.</p></div>
+      <div class="card"><h3>Real Estate</h3><p>Rental properties, REITs, with income and appreciation.</p></div>
+      <div class="card"><h3>Stock Market</h3><p>Blue chip and growth stocks with long-term upside.</p></div>
+      <div class="card"><h3>Startups</h3><p>Private equity / VC opportunities for accredited investors.</p></div>
+      <div class="card"><h3>Agriculture</h3><p>Farmland and agro-tech investments.</p></div>
+      <div class="card"><h3>Digital Assets</h3><p>Domains, NFTs and IP for long-term value.</p></div>
+    </div>
+  </section>
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  console.log("Firebase initialized", firebase);
+  <section id="roi">
+    <h2>Estimated ROI by Category</h2>
+    <ul>
+      <li>Crypto: 20% – 100% (high risk)</li>
+      <li>Real Estate: 8% – 15%</li>
+      <li>Stocks: 10% – 15%</li>
+      <li>Startups: 30% – 200% (very high risk)</li>
+      <li>Agriculture: 10% – 20%</li>
+      <li>Digital Assets: 15% – 50%</li>
+    </ul>
+  </section>
 
-  // Post a comment
-  document.getElementById("postBtn").addEventListener("click", async () => {
-    const name = document.getElementById("comment-name").value.trim();
-    const comment = document.getElementById("comment-text").value.trim();
+  <section id="calculator" class="calculator">
+    <h2>Investment Calculator</h2>
+    <label for="amount" class="small">Amount to Invest ($)</label>
+    <input type="number" id="amount" placeholder="Amount to Invest ($)" min="0" />
+    <label for="rate" class="small">Expected ROI (%) (annual)</label>
+    <input type="number" id="rate" placeholder="Expected ROI (%)" min="0" step="0.01" />
+    <label for="months" class="small">Duration (Months)</label>
+    <input type="number" id="months" placeholder="Duration (Months)" min="1" />
+    <button onclick="calculate()">Calculate</button>
+    <div id="result" style="margin-top:1rem; font-weight:bold; color:#00ffcc;"></div>
+    <p class="small" style="margin-top:0.5rem;">Calculation assumes annual ROI applied using monthly compounding.</p>
+  </section>
 
-    if (!name || !comment) {
-      alert("Please fill in all fields.");
-      return;
+  <section id="investors">
+    <h2>Latest Investors & Profits</h2>
+    <div class="latest-investors" id="investor-list">
+      <!-- JS can populate this from Firebase or local mock data -->
+      <div class="card"><strong>Deji A.</strong><br>Invested $500 — +$12 this week</div>
+      <div class="card"><strong>Maria K.</strong><br>Invested $1,200 — +$36 this week</div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <h2>What Our Investors Say</h2>
+    <div class="testimonials">
+      <div class="card">“My portfolio grew 3x in 6 months. SmartInvest is a game changer!” – Maria K.</div>
+      <div class="card">“I started with $500 and now earning passive income daily.” – Deji A.</div>
+      <div class="card">“Professional support and real returns. Highly recommended!” – Sarah G.</div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-form">
+    <h2>Contact & Comments</h2>
+    <p class="small">Leave a comment — we store it in Firestore.</p>
+    <input id="comment-name" placeholder="Your name" />
+    <textarea id="comment-text" placeholder="Your message" rows="3"></textarea>
+    <button id="postBtn">Post Comment</button>
+
+    <h3 style="margin-top:1rem;">All Comments</h3>
+    <div id="all-comments" style="margin-top:0.5rem;"></div>
+
+    <div style="margin-top:1rem;">
+      <a href="https://t.me/smartinvestarenas" target="_blank" style="background-color:#0088cc;color:white;padding:12px 20px;border-radius:6px;text-decoration:none;font-weight:bold;display:inline-block;">
+        <i style="margin-right:8px;" class="fa-brands fa-telegram"></i> Join us on Telegram
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 SmartInvest Arena. All rights reserved.
+  </footer>
+
+  <!-- Firebase & App Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    // Firebase Config (keep secure in production)
+    const firebaseConfig = {
+      apiKey: "AIzaSyB9nF_x45RPL4qN_O1xldhNhr_4AM5bXIg",
+      authDomain: "smart-invest-tracker.firebaseapp.com",
+      projectId: "smart-invest-tracker",
+      storageBucket: "smart-invest-tracker.appspot.com",
+      messagingSenderId: "464698438524",
+      appId: "1:464698438524:web:03449f9e5013bedc8a6af9",
+      measurementId: "G-E447YBQTGS"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    console.log("Firebase initialized", app);
+
+    // Calculator function (monthly compounding)
+    function calculate() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      const rate = parseFloat(document.getElementById('rate').value);
+      const months = parseFloat(document.getElementById('months').value);
+
+      const resultEl = document.getElementById('result');
+
+      if (isNaN(amount) || isNaN(rate) || isNaN(months) || amount <= 0 || months <= 0) {
+        resultEl.textContent = "Please enter valid amount, rate and months.";
+        return;
+      }
+
+      // convert annual rate percentage to monthly decimal
+      const monthlyRate = (rate / 100) / 12;
+      const periods = months;
+      const finalAmount = amount * Math.pow(1 + monthlyRate, periods);
+      const profit = finalAmount - amount;
+
+      resultEl.innerHTML = `Estimated total after ${months} month(s): <strong>$${finalAmount.toFixed(2)}</strong><br>Estimated profit: <strong>$${profit.toFixed(2)}</strong>`;
     }
 
-    try {
-      await addDoc(collection(db, "comments"), {
-        name,
-        comment,
-        timestamp: serverTimestamp()
-      });
-      alert("Comment posted ✅");
-      document.getElementById("comment-name").value = "";
-      document.getElementById("comment-text").value = "";
-      loadComments();
-    } catch (e) {
-      console.log("Posting comment:", name, comment);
-    }
-  });
+    // Post a comment
+    document.getElementById("postBtn").addEventListener("click", async () => {
+      const name = document.getElementById("comment-name").value.trim();
+      const comment = document.getElementById("comment-text").value.trim();
 
-  // Load comments
-  async function loadComments() {
-    const commentsContainer = document.getElementById("all-comments");
-    commentsContainer.innerHTML = "";
+      if (!name || !comment) {
+        alert("Please fill in all fields.");
+        return;
+      }
 
-    const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
-    const querySnapshot = await getDocs(q);
-
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      const commentDiv = document.createElement("div");
-      commentDiv.innerHTML = `<strong>${data.name}</strong><br>${data.comment}`;
-      commentsContainer.appendChild(commentDiv);
+      try {
+        await addDoc(collection(db, "comments"), {
+          name,
+          comment,
+          timestamp: serverTimestamp()
+        });
+        alert("Comment posted ✅");
+        document.getElementById("comment-name").value = "";
+        document.getElementById("comment-text").value = "";
+        loadComments();
+      } catch (e) {
+        console.error("Error posting comment:", e);
+        alert("Failed to post comment. Check console for details.");
+      }
     });
-  }
 
-  // Load on page load
-  loadComments();
-    </script><!-- Tawk.to Chat Script --><script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6877b5cab00c4c190e1cb3c8/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-  </script></body>
+    // Load comments
+    async function loadComments() {
+      const commentsContainer = document.getElementById("all-comments");
+      commentsContainer.innerHTML = "<em>Loading...</em>";
+
+      try {
+        const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
+        const querySnapshot = await getDocs(q);
+
+        commentsContainer.innerHTML = "";
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const div = document.createElement("div");
+          div.style.padding = "0.6rem";
+          div.style.borderBottom = "1px solid #222";
+          div.innerHTML = `<strong>${escapeHtml(data.name || 'Anonymous')}</strong><div style="color:#bbb;margin-top:4px;">${escapeHtml(data.comment || '')}</div>`;
+          commentsContainer.appendChild(div);
+        });
+
+        if (querySnapshot.empty) {
+          commentsContainer.innerHTML = "<div class='small'>No comments yet.</div>";
+        }
+      } catch (err) {
+        console.error("Error loading comments:", err);
+        commentsContainer.innerHTML = "<div class='small'>Failed to load comments.</div>";
+      }
+    }
+
+    // Basic escaping to avoid inserting raw HTML from Firestore
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Load on page load
+    loadComments();
+  </script>
+
+  <!-- Tawk.to Chat Script -->
+  <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/6877b5cab00c4c190e1cb3c8/default';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+    })();
+  </script>
+</body>
 </html>
